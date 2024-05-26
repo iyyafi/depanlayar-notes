@@ -3,7 +3,23 @@
 @tailwind utilities;
 
 @layer base {
-  input {
-    @apply border;
+  body {
+    @apply min-h-screen bg-neutral-100 bg-[url("./bg-circle.svg")];
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    @apply w-full rounded border px-3 py-2;
+  }
+
+  button {
+    @apply w-full rounded bg-neutral-300 p-1;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-lg bg-white p-6 shadow-lg;
   }
 }

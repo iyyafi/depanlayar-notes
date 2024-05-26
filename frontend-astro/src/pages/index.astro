@@ -12,7 +12,13 @@ import { RegisterForm } from "@components/solid/register-form";
     <title>Astro</title>
   </head>
   <body>
-    <h1>Astro</h1>
-    <RegisterForm client:load />
+    <main class="container mx-auto">
+      <h1>Astro</h1>
+      <section class="mx-auto max-w-screen-sm">
+        <div class="card">
+          <RegisterForm client:load />
+        </div>
+      </section>
+    </main>
   </body>
 </html>

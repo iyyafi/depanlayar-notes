@@ -25,9 +25,9 @@ export function RegisterForm() {
     console.log(errors);
   };
   return (
-    <form onSubmit={onSubmit} method="post">
+    <form onSubmit={onSubmit} method="post" class="flex flex-col gap-2">
       <div>
-        <label for="name">Name asd</label>
+        <label for="name">Name</label>
         <input id="name" name="name" type="text" required />
         <span>{errors.name && errors.name[0]}</span>
       </div>
@@ -41,8 +41,9 @@ export function RegisterForm() {
         <input id="password" name="password" type="password" required />
         <span>{errors.password && errors.password[0]}</span>
       </div>
-
-      <button type="submit">Register</button>
+      <button type="submit" class="mt-2">
+        Register
+      </button>
     </form>
   );
 }
