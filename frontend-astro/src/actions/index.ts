@@ -19,9 +19,8 @@ export const server = {
         invalid_type_error: "Password must be a string",
       }),
     }),
-    handler: async (register) => {
-      console.log("register", register);
-      return "Thank you!";
+    handler: async (formData) => {
+      return formData;
     },
   }),
 };
