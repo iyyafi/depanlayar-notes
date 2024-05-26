@@ -1,5 +1,5 @@
 ---
-import RegisterForm from "../components/register-form.astro";
+import { RegisterForm } from "../components/solid/register-form";
 ---
 
 <html lang="en">
@@ -12,6 +12,6 @@ import RegisterForm from "../components/register-form.astro";
   </head>
   <body>
     <h1>Astro</h1>
-    <RegisterForm />
+    <RegisterForm client:load />
   </body>
 </html>
