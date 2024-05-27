@@ -8,21 +8,24 @@ import {
 
 export function RegisterForm() {
   const [errors, setErrors] = createSignal<ErrorInferenceObject>({});
+  const [isLoading, setLoading] = createSignal(false);
 
   const onSubmit: JSX.EventHandler<HTMLFormElement, SubmitEvent> = async (
     e,
   ) => {
     e.preventDefault();
+    setLoading(true);
     const formData = new FormData(e.target as HTMLFormElement);
     const { data, error } = await actions.register.safe(formData);
 
     if (error && isInputError(error)) {
-      console.log("error", error);
       setErrors(error.fields);
+      setLoading(false);
       return false;
     }
 
     if (data) {
+      setLoading(false);
       console.log("data", data);
     }
   };
@@ -44,8 +47,8 @@ export function RegisterForm() {
         <input id="password" name="password" type="password" required />
         <span>{errors().password?.[0]}</span>
       </div>
-      <button type="submit" class="mt-2">
-        Register
+      <button type="submit" class="mt-2" disabled={isLoading()}>
+        {isLoading() ? "Loading..." : "Register"}
       </button>
     </form>
   );

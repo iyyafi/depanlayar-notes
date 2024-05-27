@@ -19,7 +19,31 @@ export const server = {
         invalid_type_error: "Password must be a string",
       }),
     }),
-    handler: async (formData) => {
+    handler: async (formData, context) => {
+      // Todo: need to test the cookies
+      try {
+        const response = await fetch(
+          `http://localhost:1337/api/auth/local/register`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: formData.name,
+              password: formData.password,
+              email: formData.email,
+              username: formData.email.replace("@", "").replace(".", ""),
+            }),
+          },
+        );
+
+        const result = await response.json();
+        context.cookies.set("jwt", result.data.jwt);
+        context.cookies.set("userData", result.data.user);
+      } catch (error) {
+        console.error("Error:", error);
+      }
       return formData;
     },
   }),
