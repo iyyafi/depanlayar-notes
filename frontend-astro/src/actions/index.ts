@@ -39,12 +39,19 @@ export const server = {
         );
 
         const result = await response.json();
-        context.cookies.set("jwt", result.data.jwt);
-        context.cookies.set("userData", result.data.user);
+        context.cookies.set("jwt", result.data.jwt, {
+          path: "/",
+          httpOnly: true,
+        });
+        context.cookies.set("userData", result.data.user, {
+          path: "/",
+          httpOnly: true,
+        });
       } catch (error) {
         console.error("Error:", error);
       }
-      return formData;
+
+      return context.redirect("/");
     },
   }),
 };

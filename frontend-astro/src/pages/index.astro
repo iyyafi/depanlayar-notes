@@ -1,6 +1,9 @@
 ---
 import "@styles/global.css";
 import { RegisterForm } from "@components/solid/register-form";
+
+const userData = Astro.cookies.get("userData")?.value ?? null;
+console.log(userData);
 ---
 
 <html lang="en">
